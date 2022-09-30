@@ -1,0 +1,24 @@
+
+.barranavegacion{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(54, 49, 49);
+}
+
+.imagenlogo{
+    height: 50px;
+}
+.lista{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+
+}
+.lista li{
+    margin: 10px;
+    font-family: Calibri;
+    font-size: 30px;
+    color: blanchedalmond;
+}
