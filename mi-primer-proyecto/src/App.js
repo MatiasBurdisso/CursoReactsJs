@@ -3,6 +3,7 @@ import './App.css';
 import {Navbar} from './componets/Navbar/Navbar';
 import {ItemListContainer} from './componets/itemlistcontainer/itemlistcontainer';
 import { Itemlist } from './componets/itemList/itemList';
+import { QuienesSomos } from './componets/QuinesSomosPage/QuienesSomosPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -11,9 +12,9 @@ function App() {
     <div className="App">
       <div>
       <Navbar/>
-      <ItemListContainer />
       <Routes>
-        
+        <Route path='/inicio' element={<ItemListContainer/>}/>
+        <Route path='/quienesSomos' element={<QuienesSomos/>}/>
       </Routes>
       </div>
     </div>
