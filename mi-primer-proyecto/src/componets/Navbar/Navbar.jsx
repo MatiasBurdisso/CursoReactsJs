@@ -9,8 +9,8 @@ export const Navbar = () =>{
             <img className="imagenlogo" src={ImagenDeLogo} alt="Logo" />
             <ul className="lista">
                 <li><Link to="./inicio">Inicio</Link></li>
-                <li><a href=""></a>Mujeres</li>
-                <li><a href=""></a>Hombres</li>
+                <li><Link to="./categoria/hombres">Hombres</Link></li>
+                <li><Link to="./categoria/mujeres">Mujeres</Link></li>
                 <li><Link to="./quienesSomos">Nosotros</Link></li>
             </ul>
             <CartWidget/>

@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 export const ItemListContainer = () => {
     console.log(useParams());
     const {categoryId} = useParams();
+    console.log(categoryId);
     const [productos,Setproductos] = useState([]);
 
     const promesa = new Promise((resolve, reject) => {
