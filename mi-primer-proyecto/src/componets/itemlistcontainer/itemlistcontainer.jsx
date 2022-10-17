@@ -6,8 +6,8 @@ import {useEffect, useState} from "react";
 
 export const ItemListContainer = () => {
     console.log(useParams());
-    const {categoryId} = useParams();
-    console.log(categoryId);
+    const {categoryID} = useParams();
+    console.log(categoryID);
 
     const [productos,Setproductos] = useState([]);
 
@@ -19,15 +19,15 @@ export const ItemListContainer = () => {
 
     useEffect(()=>{
         promesa.then((response)=>{
-            if(categoryId){
-                const productosFiltered = response.filter(elm=>elm.categoria === categoryId);
+            if(categoryID){
+                const productosFiltered = response.filter(elm=>elm.categoria === categoryID);
                 Setproductos(productosFiltered);
             }else{
                 Setproductos(response)
             }
         })
 
-    },[categoryId])
+    },[categoryID])
 
 
     /*const obtenerproductos = () =>{
