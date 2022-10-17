@@ -1,4 +1,5 @@
-import { arregloproductos } from "./item"
+import { arregloproductos } from "./item";
+import { Link, link } from "react-router-dom";
 
 export const Itemlist = ({items}) => {
   
@@ -18,6 +19,9 @@ export const Itemlist = ({items}) => {
                 <div>
                 <h2>{producto.categoria}</h2>
                 <h3 class="text-muted">{producto.precio}</h3>
+                <Link to={`/item/${producto.id}`}>
+                  <button>ver mas</button>
+                </Link>
                 </div>
               </div>
             </div>

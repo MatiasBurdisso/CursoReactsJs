@@ -17,6 +17,7 @@ function App() {
         {/*<Route path='/categoria/hombres' element={<ItemListContainer/>}/>
         <Route path='/categoria/mujeres' element={<ItemListContainer/>}/>*/}
         <Route path='/categoria/:categoryID' element={<ItemListContainer/>}/>
+        {/*<Route path='/item/:Id' element={<ItemDetailContainer/>}/>*/}
         <Route path='/quienesSomos' element={<QuienesSomos/>}/>
       </Routes>
       </div>
