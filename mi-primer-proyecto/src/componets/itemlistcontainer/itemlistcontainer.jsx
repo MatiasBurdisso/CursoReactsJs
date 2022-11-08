@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import {useEffect, useState} from "react";
 
 
+
 export const ItemListContainer = () => {
     console.log(useParams());
     const {categoryID} = useParams();
@@ -14,7 +15,7 @@ export const ItemListContainer = () => {
     const promesa = new Promise((resolve, reject) => {
         setTimeout(()=>{
             resolve(arregloproductos);
-        },2000);
+        },1000);
     })
 
     useEffect(()=>{
@@ -40,7 +41,7 @@ export const ItemListContainer = () => {
     useEffect(() =>{
         obtenerproductos().them((result)=>console.log(result))
     })*/
-    console.log("productos",productos);
+
     return(
         <div className="cuerpo">
           <Itemlist items={productos}/>

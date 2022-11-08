@@ -1,40 +1,36 @@
+import React from "react";
 import { arregloproductos } from "../itemList/item";
-import { Itemlist } from "../itemList/itemList";
-import { useParams } from "react-router-dom";
+import { ItemDetail } from "../itemDetail/itemDetail";
 import {useEffect, useState} from "react";
+import { useParams } from "react-router-dom";
+
 
 export const ItemDetailContainer = () => {
     
-    const {Id} = useParams();
-    console.log(Id);
+    const {detalleID} = useParams();
+    const [data,SetData] = useState([]);
 
-    const [productos,Setproductos] = useState([]);
-
-    const detalle = new Promise((resolve, reject) => {
-        setTimeout(()=>{
+    const promesa = new Promise((resolve,reject) => {
+        setTimeout(() => {
             resolve(arregloproductos);
-        },2000);
+        },1000);
     })
 
     useEffect(()=>{
-        detalle.then((response)=>{
-            if(Id){
-                const productosFiltered = response.filter(elm=>elm.id === Id);
-                Setproductos(productosFiltered);
-            }else{
-                Setproductos(response)
-            }
-        })
-
-    },[Id])
-
-
+        const getProducto = async ()=>{
+            const productos = await promesa;
+            console.log("productos", productos);
+            const producto = productos.find(elemento=>elemento.id === parseInt(detalleID));
+            console.log("producto", producto)
+            SetData(producto);
+        }
+        getProducto();
+    },[detalleID])
     
-    console.log("productos",productos);
-    return(
-        <div className="cuerpo">
-          <Itemlist items={productos}/>
-        </div>
 
-    )
+
+
+    return (
+        <ItemDetail detalles={data}/>
+    );
 }
