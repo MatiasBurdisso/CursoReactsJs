@@ -2,6 +2,8 @@ import { arregloproductos } from "./item";
 import React from "react";
 import { Link } from "react-router-dom";
 
+
+
 export const Itemlist = ({items}) => {
   
   return (
