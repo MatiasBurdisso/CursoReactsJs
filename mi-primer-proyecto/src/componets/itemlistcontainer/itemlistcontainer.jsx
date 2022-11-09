@@ -1,34 +1,36 @@
 import { arregloproductos } from "../itemList/item";
 import { Itemlist } from "../itemList/itemList";
+import { getFirestore, collection, getDocs, query, where } from 'firebase/firestore';
 import { useParams } from "react-router-dom";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 
 
 export const ItemListContainer = () => {
     console.log(useParams());
-    const {categoryID} = useParams();
+    const { categoryID } = useParams();
     console.log(categoryID);
 
-    const [productos,Setproductos] = useState([]);
+    const [data, SetData] = useState([]);
 
-    const promesa = new Promise((resolve, reject) => {
-        setTimeout(()=>{
-            resolve(arregloproductos);
-        },1000);
-    })
 
-    useEffect(()=>{
-        promesa.then((response)=>{
-            if(categoryID){
-                const productosFiltered = response.filter(elm=>elm.categoria === categoryID);
-                Setproductos(productosFiltered);
-            }else{
-                Setproductos(response)
-            }
-        })
 
-    },[categoryID])
+    useEffect(() => {
+        const querydb = getFirestore();
+        const queryCollection = collection(querydb, 'items');
+
+        if (categoryID) {
+            const queryFilter = query(queryCollection, where('categoria', '==', categoryID))
+            getDocs(queryFilter)
+                .then(res => SetData(res.docs.map(product => ({ id: product.id, ...product.data() }))))
+
+        } else {
+            getDocs(queryCollection)
+                .then(res => SetData(res.docs.map(product => ({ id: product.id, ...product.data() }))))
+        }
+
+
+    }, [categoryID])
 
 
     /*const obtenerproductos = () =>{
@@ -42,9 +44,9 @@ export const ItemListContainer = () => {
         obtenerproductos().them((result)=>console.log(result))
     })*/
 
-    return(
+    return (
         <div className="cuerpo">
-          <Itemlist items={productos}/>
+            <Itemlist items={data} />
         </div>
 
     )
